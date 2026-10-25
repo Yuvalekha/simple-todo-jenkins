@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'          // name configured in Manage Jenkins > Tools
+        maven 'Maven3'        
     }
 
     triggers {
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+               archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
     }
@@ -47,4 +47,5 @@ pipeline {
             message: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}console|Console>)"
         )
     }
+}
 }
