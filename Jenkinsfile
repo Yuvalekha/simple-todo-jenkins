@@ -30,7 +30,18 @@ pipeline {
     }
 
     post {
-        success { echo 'Build succeeded' }
-        failure { echo 'Build failed' }
+    success {
+        slackSend(
+            channel: '#jenkins-builds',
+            color: 'good',
+            message: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        )
+    }
+    failure {
+        slackSend(
+            channel: '#jenkins-builds',
+            color: 'danger',
+            message: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}console|Console>)"
+        )
     }
 }
