@@ -18,8 +18,7 @@ pipeline {
         stage('Build') {
             environment {
                 MAVEN_OPTS = '-Xmx256m'
-            }
-        }      
+            }    
             steps {
                 sh 'java -version'
                 sh 'mvn -version'
